@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine?</title>
+
+<style>
+body {
+    background: linear-gradient(to bottom right, #ff9eb5, #ff4f81);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Comic Sans MS', cursive;
+    overflow: hidden;
+    text-align: center;
+}
+
+.container {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+h1 {
+    color: #ff4f81;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    margin: 10px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#yesBtn {
+    background-color: #ff4f81;
+    color: white;
+}
+
+#yesBtn:hover {
+    background-color: #ff1e63;
+}
+
+#noBtn {
+    background-color: #ddd;
+}
+
+.heart {
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh); }
+    100% { transform: translateY(-10vh); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Will You Be My Valentine? 💕</h1>
+    <p>You make my world brighter every day.</p>
+    <button id="yesBtn" onclick="sayYes()">YES 💖</button>
+    <button id="noBtn" onmouseover="moveButton()">No 😢</button>
+</div>
+
+<script>
+function sayYes() {
+    document.body.innerHTML = "<h1 style='color:white;'>YAY!!! 💕 I love you!!! 💕</h1>";
+}
+
+function moveButton() {
+    const button = document.getElementById("noBtn");
+    const x = Math.random() * (window.innerWidth - button.clientWidth);
+    const y = Math.random() * (window.innerHeight - button.clientHeight);
+    button.style.position = "absolute";
+    button.style.left = x + "px";
+    button.style.top = y + "px";
+}
+
+function createHearts() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+setInterval(createHearts, 300);
+</script>
+
+</body>
+</html>
